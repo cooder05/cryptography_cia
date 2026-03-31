@@ -5,8 +5,6 @@
 This module implements a **very simple educational hash function** based on XORing
 16-bit binary blocks derived from text.
 
-> ⚠️ This is **not cryptographically secure**. It is for learning purposes only.
-
 ---
 
 ## Overview
