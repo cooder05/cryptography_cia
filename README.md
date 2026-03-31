@@ -18,9 +18,3 @@ The hash works in five stages:
 5. XOR all 16-bit blocks together to produce a final 16-bit hash
 
 ---
-
-## Step 1 — Clean Text
-
-```python
-def clean_text(s):
-    return ''.join([c for c in s.upper() if c in string.ascii_uppercase])
