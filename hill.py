@@ -42,20 +42,20 @@ def matrix_modinv(matrix, modulus):
     return (det_inv * adj) % modulus
 
 
-def hill_encrypt(ptext):
+def hill_encrypt(ptext,k):
     msg = clean_text(ptext)
     msg = pad_text(msg,3)
     cipher_text = ""
 
     for i in range(0, len(msg), 3):
         block = text_to_vec(msg[i:i+3])
-        encrypted = np.dot(K, block) % MOD
+        encrypted = np.dot(k, block) % MOD
         cipher_text += vec_to_text(encrypted)
     
     return cipher_text
 
-def hill_decrypt(ciphertext):
-    K_inv = matrix_modinv(K, MOD)
+def hill_decrypt(ciphertext,k):
+    K_inv = matrix_modinv(k, MOD)
     plaintext = ""
 
     for i in range(0, len(ciphertext), 3):
