@@ -1,6 +1,6 @@
 from hill import clean_text,pad_text
 
-def atext_2_binblocks(text):
+def text_2_binblocks(text):
     blocks = []
     for i in range(0,len(text),2):
         bin1 = str(format(ord(text[i]), '08b'))     #8-bit binary
