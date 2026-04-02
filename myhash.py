@@ -10,9 +10,9 @@ def text_2_binblocks(text):
     return blocks
     
 
-def xor16_hash(htext,k):
+def xor16_hash(htext,ks):
     msg = clean_text(htext)
-    msg += k   #key in array form
+    msg += ks   #key in array form
     msg = pad_text(msg,2)
     blocks = text_2_binblocks(msg)
     result = 0
