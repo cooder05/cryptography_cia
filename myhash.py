@@ -1,6 +1,9 @@
 def clean_text(s):
     return ''.join([c for c in s.upper() if c in string.ascii_uppercase])
-
+def pad_text(s, n):
+    while len(s) % n != 0:
+        s += 'X'
+    return s
 
 def text_2_binblocks(text):
     blocks = []
