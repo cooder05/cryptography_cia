@@ -1,3 +1,13 @@
+def text_2_binblocks(text):
+    blocks = []
+    for i in range(0,len(text),2):
+        bin1 = str(format(ord(text[i]), '08b'))     #8-bit binary
+        bin2 = str(format(ord(text[i+1]),'08b'))    #8-bit binary
+        block = bin1+bin2                           #16-bit binary
+        blocks.append(block)
+    return blocks
+    
+
 def myhash(htext):
     msg = clean_text(htext)
     msg += "GYBNQKURP"   #key in array form
