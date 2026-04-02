@@ -1,5 +1,5 @@
 from hill import hill_encrypt, hill_decrypt
-import myhash
+from myhash import xor16_hash
 import numpy as np
 
 K = np.array([[6,24,1],
