@@ -1,3 +1,7 @@
+def clean_text(s):
+    return ''.join([c for c in s.upper() if c in string.ascii_uppercase])
+
+
 def text_2_binblocks(text):
     blocks = []
     for i in range(0,len(text),2):
