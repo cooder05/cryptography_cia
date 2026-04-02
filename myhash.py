@@ -12,7 +12,7 @@ def text_2_binblocks(text):
     return blocks
     
 
-def myhash(htext):
+def xor16_hash(htext):
     msg = clean_text(htext)
     msg += "GYBNQKURP"   #key in array form
     msg = pad_text(msg,2)
