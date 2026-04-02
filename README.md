@@ -56,12 +56,15 @@ This design demonstrates why real cryptographic hashes require complex non-linea
 | `hill.py` | Implementation of Hill encryption and decryption |
 | `myhash.py` | Implementation of custom XOR 16-bit hash |
 | `test_roundtrip.py` | Demonstrates encrypt → hash → decrypt process |
-
 ---
 
 ## How to Run
 
 Ensure Python and NumPy are installed.
+
+## How to Run
+
+Make sure Python and NumPy are installed.
 
 ```bash
 python test_roundtrip.py
