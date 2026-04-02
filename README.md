@@ -1,76 +1,67 @@
-# cryptography_cia
+# Hill Cipher + Custom 16-bit XOR Hash
 
-# Toy XOR Hash (16-bit) — Explanation
+This project implements:
 
-This module implements a **very simple educational hash function** based on XORing
-16-bit binary blocks derived from text.
-
----
-
-## Overview
-
-The hash works in five stages:
-
-The hash is computed **from the ciphertext**, not the original plaintext.
+- The **Hill cipher** (3×3 matrix, modulo 26) for encryption and decryption
+- A **custom 16-bit XOR-based hash function** computed from the ciphertext and key
 
 ---
 
-## Step 1 — Input Is the Ciphertext
+## Theory
 
-After Hill encryption, the text:
+### Hill Cipher
 
-- Contains only uppercase letters A–Z
-- Is padded to a multiple of 3
-- Has been transformed using matrix multiplication mod 26
+The Hill cipher is a classical polygraphic substitution cipher based on linear algebra.
 
-The hash operates on this encrypted output.
+Encryption is performed using:
 
----
+\[
+C = K \cdot P \pmod{26}
+\]
 
-## Step 2 — Append Key String
+Where:
 
-This string represents the Hill cipher key matrix written row-wise as letters.
+- \(K\) is a 3×3 invertible key matrix modulo 26
+- \(P\) is a vector of plaintext letters
+- \(C\) is the resulting ciphertext vector
 
-Appending it ensures the hash depends on both:
-
-- The ciphertext
-- The encryption key
-
----
-
-## Step 3 — Pad to Even Length
-
-The hash processes **2 characters at a time**, so the message is padded with `'X'` if needed to make the length even.
+To decrypt, the modular inverse of the key matrix is computed and applied to the ciphertext.
 
 ---
 
-## Step 4 — Convert Text to 16-bit Binary Blocks
+### Custom 16-bit XOR Hash
 
-Each pair of characters becomes one 16-bit block:
+The hashing function is intentionally simple for educational purposes.
 
-1. Convert each character to ASCII
-2. Represent ASCII as 8-bit binary
-3. Concatenate to form a 16-bit block
+The hash is computed **from the ciphertext**, not the plaintext.
 
-Example:
+#### Steps:
 
-| Char | ASCII | 8-bit Binary |
-|------|-------|---------------|
-| H    | 72    | 01001000      |
-| E    | 69    | 01000101      |
+1. Append the key string (matrix written row-wise as letters) to the ciphertext
+2. Pad the result to an even number of characters
+3. Split into 2-character blocks
+4. Convert each character to its ASCII 8-bit binary form
+5. Combine into 16-bit blocks
+6. XOR all 16-bit blocks together
+7. Output the final 16-bit binary value
 
-16-bit block:
-
-0100100001000101
----
-
-## Step 5 — XOR All 16-bit Blocks
-
-Each block is:
-
-1. Converted from binary string to integer (base 2)
-2. XORed with an accumulator
-
-The final value is formatted back into 16-bit binary:
+This design demonstrates why real cryptographic hashes require complex non-linear mixing.
 
 ---
+
+## Files in This Repository
+
+| File | Description |
+|---|---|
+| `hill.py` | Implementation of Hill encryption and decryption |
+| `myhash.py` | Implementation of custom XOR 16-bit hash |
+| `test_roundtrip.py` | Demonstrates encrypt → hash → decrypt process |
+
+---
+
+## How to Run
+
+Ensure Python and NumPy are installed.
+
+```bash
+python test_roundtrip.py
